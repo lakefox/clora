@@ -1,0 +1,93 @@
+{
+  ".svelte-kit/runtime/client/start.js": {
+    "file": "start-5d06075e.js",
+    "src": ".svelte-kit/runtime/client/start.js",
+    "isEntry": true,
+    "imports": [
+      "_index-c4979612.js",
+      "_index-7ee28992.js"
+    ],
+    "dynamicImports": [
+      ".svelte-kit/runtime/components/layout.svelte",
+      ".svelte-kit/runtime/components/error.svelte",
+      "_board-4e2871ed.js",
+      "src/routes/canvas.svelte",
+      "src/routes/index.svelte"
+    ]
+  },
+  ".svelte-kit/runtime/components/layout.svelte": {
+    "file": "layout.svelte-28f02c1b.js",
+    "src": ".svelte-kit/runtime/components/layout.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-c4979612.js"
+    ]
+  },
+  ".svelte-kit/runtime/components/error.svelte": {
+    "file": "error.svelte-face5e61.js",
+    "src": ".svelte-kit/runtime/components/error.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-c4979612.js"
+    ]
+  },
+  "src/routes/canvas.svelte": {
+    "file": "pages/canvas.svelte-2d4c0a6a.js",
+    "src": "src/routes/canvas.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-c4979612.js"
+    ],
+    "css": [
+      "assets/pages/canvas.svelte-7e7c0aac.css"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "pages/index.svelte-65658992.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-c4979612.js",
+      "_board-4e2871ed.js",
+      "_index-7ee28992.js",
+      "src/routes/canvas.svelte"
+    ],
+    "css": [
+      "assets/pages/index.svelte-7dfa2637.css"
+    ]
+  },
+  "src/routes/board.svelte": {
+    "file": "pages/board.svelte-8df2976d.js",
+    "src": "src/routes/board.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-c4979612.js",
+      "_board-4e2871ed.js",
+      "src/routes/canvas.svelte"
+    ]
+  },
+  "_index-c4979612.js": {
+    "file": "chunks/index-c4979612.js"
+  },
+  "_index-7ee28992.js": {
+    "file": "chunks/index-7ee28992.js",
+    "imports": [
+      "_index-c4979612.js"
+    ]
+  },
+  "_board-4e2871ed.js": {
+    "file": "chunks/board-4e2871ed.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-c4979612.js",
+      "src/routes/canvas.svelte"
+    ],
+    "css": [
+      "assets/board-dde5523f.css"
+    ]
+  }
+}

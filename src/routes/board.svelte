@@ -220,6 +220,7 @@
 		openModel = false;
 	}
 	let pinNumber = 0;
+	let boardType = 'header';
 </script>
 
 <div class="box" on:click={open}>
@@ -252,6 +253,13 @@
 							max={data.width * data.height}
 							min="0"
 						/>
+					</div>
+					<div class="row inputRow">
+						<div class="label">Type:</div>
+						<select bind:value={boardType}>
+							<option value="header" default>Header Pins</option>
+							<option value="ic">IC Pins</option>
+						</select>
 					</div>
 					<!-- type pins or ic -->
 				</div>
