@@ -15,7 +15,7 @@ export default {
         },
         size: {
             control: { type: 'select' },
-            options: ['small', 'medium', 'large'],
+            options: ['xsmall', 'small', 'medium', 'large'],
         },
     },
 };
@@ -42,6 +42,12 @@ Medium.args = {
 export const Small = Template.bind({});
 Small.args = {
     size: 'small',
+    value: "Hello!"
+};
+
+export const Xsmall = Template.bind({});
+Xsmall.args = {
+    size: 'xsmall',
     value: "Hello!"
 };
 

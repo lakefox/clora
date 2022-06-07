@@ -2,6 +2,10 @@
 	import { onMount } from 'svelte';
 
 	export let data;
+	export let pinX;
+	export let pinY;
+
+	console.log(data);
 
 	let canvas;
 
@@ -32,8 +36,6 @@
 			}
 		}
 
-		console.log(textMarginLeft);
-
 		canvas.width =
 			data.width * pinWidth + pinMargin * data.width + textMarginLeft + textMarginRight;
 		canvas.height = data.height * pinHeight + pinMargin * data.height;
@@ -42,7 +44,6 @@
 		for (let i = 0; i < data.width * data.height; i++) {
 			let x = parseInt(i / data.height);
 			let y = i - data.height * x;
-			console.log(x * pinWidth + pinMargin, y * pinHeight + pinMargin);
 			ctx.fillStyle = '#212121';
 			roundRect(
 				ctx,
@@ -65,6 +66,12 @@
 			);
 			ctx.fillStyle = '#bbb';
 			ctx.font = '18px Arial';
+			let fillStyle = '#bbb';
+			if (typeof pinX != 'undefined' && typeof pinY != 'undefined') {
+				if (pinX == x && pinY == y) {
+					fillStyle = '#212121';
+				}
+			}
 			if (x == 0) {
 				if (typeof data.data[i] != 'undefined') {
 					if (typeof data.data[i].label != 'undefined') {
@@ -74,7 +81,7 @@
 							[
 								{
 									text: data.data[i].label,
-									fillStyle: '#bbb',
+									fillStyle: fillStyle,
 									font: '18px Arial'
 								},
 								{
@@ -102,7 +109,7 @@
 								},
 								{
 									text: data.data[i].label,
-									fillStyle: '#bbb',
+									fillStyle: fillStyle,
 									font: '18px Arial'
 								}
 							],
@@ -158,7 +165,7 @@
 
 <style>
 	canvas {
-		width: 100%;
-		height: 100%;
+		max-width: 100%;
+		max-height: 100%;
 	}
 </style>

@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="./favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta http-equiv="content-security-policy" content="">
-	<link rel="stylesheet" href="/_app/immutable/assets/pages/index.svelte-7dfa2637.css">
-	<link rel="stylesheet" href="/_app/immutable/assets/board-dde5523f.css">
-	<link rel="stylesheet" href="/_app/immutable/assets/pages/canvas.svelte-7e7c0aac.css">
-	<link rel="modulepreload" href="/_app/immutable/start-5d06075e.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/index-c4979612.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/index-7ee28992.js">
-	<link rel="modulepreload" href="/_app/immutable/layout.svelte-28f02c1b.js">
-	<link rel="modulepreload" href="/_app/immutable/pages/index.svelte-65658992.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/board-4e2871ed.js">
-	<link rel="modulepreload" href="/_app/immutable/pages/canvas.svelte-2d4c0a6a.js">
-	</head>
-	<body>
-		<div>
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="./favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Clora</title>
+	<meta http-equiv="content-security-policy" content="">
+	<link rel="stylesheet" href="/_app/immutable/assets/pages/index.svelte-3ee47cfb.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-c0d996eb.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/pages/board.svelte-d4c28d5a.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/pages/ruler.svelte-b05034e6.css">
+	<link rel="modulepreload" href="/_app/immutable/start-4f1402e8.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-8c2c5986.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1e654a1f.js">
+	<link rel="modulepreload" href="/_app/immutable/layout.svelte-669df435.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/index.svelte-a324414c.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-ee69d8da.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/board.svelte-6263aeab.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/ruler.svelte-f0529db6.js">
+</head>
+
+<body>
+	<div>
 
 
 <article>
@@ -41,32 +46,26 @@
 			<div class="mobile_menu svelte-1fxsn2x"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svelte-c8tyih"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"></path></svg></div></div></div>
 </header>
 
-	<div class="cont svelte-1dwmi5f"><main class="svelte-l89m03">
+	<div class="cont svelte-1dwmi5f"><main class="svelte-10l059l">
 </main>
+		<div class="content svelte-1dwmi5f"><main class="svelte-vqoc5m"><div class="h2 svelte-vqoc5m" style="color: #212121">Boards</div>
+</main>
+				<div class="items svelte-1me0i4o"><div class="box svelte-1me0i4o"><main class="svelte-vqoc5m"><div class="h3 svelte-vqoc5m" style="color: #212121">Raspberry PI</div>
+</main>
+			<div class="canvasCont svelte-1me0i4o"><canvas id="canvas" class="svelte-18ilsbo"></canvas></div>
+		</div><div class="box svelte-1me0i4o"><main class="svelte-vqoc5m"><div class="h3 svelte-vqoc5m" style="color: #212121">Raspberry PI</div>
+</main>
+			<div class="canvasCont svelte-1me0i4o"><canvas id="canvas" class="svelte-18ilsbo"></canvas></div>
+		</div></div>
 
-		<div class="content svelte-1dwmi5f"><main class="svelte-1lcvkv0"><div class="h2 svelte-1lcvkv0" style="color: #212121">Boards</div>
-</main>
-			<div class="box svelte-1p2wkeu"><main class="svelte-1lcvkv0"><div class="h3 svelte-1lcvkv0" style="color: #212121">Raspberry PI</div>
-</main>
-	<canvas id="canvas" class="svelte-5tod0y"></canvas></div>
-
-<div class="model svelte-1p2wkeu"><div class="model_content svelte-1p2wkeu"><div class="row svelte-1p2wkeu"><main class="svelte-1lcvkv0"><div class="h3 svelte-1lcvkv0" style="color: #212121">Edit: Raspberry PI</div>
-</main>
-				<div class="close svelte-1p2wkeu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svelte-c8tyih"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></div></div>
-			<br>
-			<div class="row svelte-1p2wkeu"><div class="canvasSmall svelte-1p2wkeu"><canvas id="canvas" class="svelte-5tod0y"></canvas></div>
-				<div class="edit svelte-1p2wkeu"><main class="svelte-1lcvkv0"><div class="h3 svelte-1lcvkv0" style="color: #212121">Pin Values</div>
-</main>
-					<div class="row inputRow svelte-1p2wkeu"><div class="label svelte-1p2wkeu">Pin:</div>
-						<input type="number" id="pinSelect" max="40" min="0" class="svelte-1p2wkeu" value="0"></div>
-					</div></div></div></div></div></div>
+</div></div>
 </article>
 
 
-		<script type="module" data-sveltekit-hydrate="1h7qean">
-		import { start } from "/_app/immutable/start-5d06075e.js";
+		<script type="module" data-sveltekit-hydrate="65goaa">
+		import { start } from "/_app/immutable/start-4f1402e8.js";
 		start({
-			target: document.querySelector('[data-sveltekit-hydrate="1h7qean"]').parentNode,
+			target: document.querySelector('[data-sveltekit-hydrate="65goaa"]').parentNode,
 			paths: {"base":"","assets":""},
 			session: {},
 			route: true,
@@ -75,11 +74,12 @@
 			hydrate: {
 				status: 200,
 				error: null,
-				nodes: [0, 4],
+				nodes: [0, 3],
 				params: {},
 				routeId: ""
 			}
 		});
 	</script></div>
-	</body>
+</body>
+
 </html>

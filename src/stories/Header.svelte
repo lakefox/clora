@@ -41,7 +41,6 @@
 	let width = 0;
 
 	function setWidth() {
-		console.log(width);
 		if (width <= 500) {
 			mobile.set(true);
 			mobileVal = true;

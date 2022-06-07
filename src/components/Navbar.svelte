@@ -1,7 +1,7 @@
 <script>
 	import IoMdArrowDropdown from 'svelte-icons/io/IoMdArrowDropdown.svelte';
 	import IoMdArrowDropup from 'svelte-icons/io/IoMdArrowDropup.svelte';
-	import { show, mobile } from '../stores.js';
+	import { show, mobile, selectedMenuOption } from '../stores.js';
 
 	export let props = null;
 
@@ -28,9 +28,12 @@
 	mobile.subscribe((value) => {
 		mobileVal = value;
 	});
-
 	function showMenu() {
 		showVal = !showVal;
+	}
+
+	function select(a) {
+		$selectedMenuOption = a;
 	}
 </script>
 
@@ -57,7 +60,7 @@
 						{#if prop.showSubs == true}
 							<div class="sub_cont">
 								{#each prop.sub as sub}
-									<div class="sub">
+									<div class="sub" on:click={() => select(sub.action)}>
 										{sub.name}
 									</div>
 								{/each}
@@ -76,6 +79,7 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 		background: #fff;
+		user-select: none;
 	}
 	.wrapper {
 		font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -101,5 +105,9 @@
 		padding: 5px;
 		font-size: 13px;
 		margin-bottom: 3px;
+		cursor: pointer;
+	}
+	.sub:hover {
+		background: #e2e2e2;
 	}
 </style>

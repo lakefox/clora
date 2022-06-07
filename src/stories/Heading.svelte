@@ -21,6 +21,10 @@
 		<div class="h3" {style}>
 			{value}
 		</div>
+	{:else if size == 'xsmall'}
+		<div class="h4" {style}>
+			{value}
+		</div>
 	{/if}
 </main>
 
@@ -37,5 +41,8 @@
 	}
 	.h3 {
 		font-size: 25px;
+	}
+	.h4 {
+		font-size: 17px;
 	}
 </style>

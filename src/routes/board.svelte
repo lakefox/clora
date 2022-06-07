@@ -1,238 +1,52 @@
 <script>
 	import Heading from '../stories/Heading.svelte';
-	import Canvas from './canvas.svelte';
+	import Canvas from '../components/canvas.svelte';
 	import MdClose from 'svelte-icons/md/MdClose.svelte';
-
-	let data = {
-		name: 'Raspberry PI',
-		width: 2,
-		height: 20,
-		data: [
-			{
-				label: '3v3 Power',
-				type: 'VCC',
-				pin: 1
-			},
-			{
-				label: 'GPIO 2 (I2C1) SDA',
-				type: 'GPIO',
-				pin: 3
-			},
-			{
-				label: 'GPIO 3 (I2C1) SCL',
-				type: 'GPIO',
-				pin: 5
-			},
-			{
-				label: 'GPIO 4 (GPCLK0)',
-				type: 'GPIO',
-				pin: 7
-			},
-			{
-				label: 'Ground',
-				type: 'GND',
-				pin: 9
-			},
-			{
-				label: 'GPIO 17',
-				type: 'GPIO',
-				pin: 11
-			},
-			{
-				label: 'GPIO 27',
-				type: 'GPIO',
-				pin: 13
-			},
-			{
-				label: 'GPIO 22',
-				type: 'GPIO',
-				pin: 15
-			},
-			{
-				label: '3v3 Power',
-				type: 'VCC',
-				pin: 17
-			},
-			{
-				label: 'GPIO 10 (SPIO MOSI)',
-				type: 'GPIO',
-				pin: 19
-			},
-			{
-				label: 'GPIO 9 (SPIO MISO)',
-				type: 'GPIO',
-				pin: 21
-			},
-			{
-				label: 'GPIO 11 (SPIO SCLK)',
-				type: 'GPIO',
-				pin: 23
-			},
-			{
-				label: 'Ground',
-				type: 'GND',
-				pin: 25
-			},
-			{
-				label: 'GPIO 0 (EEPROM SDA)',
-				type: 'GPIO',
-				pin: 27
-			},
-			{
-				label: 'GPIO 5',
-				type: 'GPIO',
-				pin: 29
-			},
-			{
-				label: 'GPIO 6',
-				type: 'GPIO',
-				pin: 31
-			},
-			{
-				label: 'GPIO 13 (PWM1)',
-				type: 'GPIO',
-				pin: 33
-			},
-			{
-				label: 'GPIO 19 (PCM FS)',
-				type: 'GPIO',
-				pin: 35
-			},
-			{
-				label: 'GPIO 26',
-				type: 'GPIO',
-				pin: 37
-			},
-			{
-				label: 'Ground',
-				type: 'GND',
-				pin: 39
-			},
-			{
-				label: '5v Power',
-				type: 'VCC',
-				pin: 2
-			},
-			{
-				label: '5v Power',
-				type: 'VCC',
-				pin: 4
-			},
-			{
-				label: 'Ground',
-				type: 'GND',
-				pin: 6
-			},
-			{
-				label: 'GPIO 14 (UART TX)',
-				type: 'GPIO',
-				pin: 8
-			},
-			{
-				label: 'GPIO 15 (UART RX)',
-				type: 'GPIO',
-				pin: 10
-			},
-			{
-				label: 'GPIO 18 (PCM CLK)',
-				type: 'GPIO',
-				pin: 12
-			},
-			{
-				label: 'Ground',
-				type: 'GND',
-				pin: 14
-			},
-			{
-				label: 'GPIO 23',
-				type: 'GPIO',
-				pin: 16
-			},
-			{
-				label: 'GPIO 24',
-				type: 'GPIO',
-				pin: 18
-			},
-			{
-				label: 'Ground',
-				type: 'GPIO',
-				pin: 20
-			},
-			{
-				label: 'GPIO 25',
-				type: 'GPIO',
-				pin: 22
-			},
-			{
-				label: 'GPIO 8 (SPIO CE0)',
-				type: 'GPIO',
-				pin: 24
-			},
-			{
-				label: 'GPIO 7 (SPIO CE1)',
-				type: 'GPIO',
-				pin: 26
-			},
-			{
-				label: 'GPIO 1 (EEPROM SCL)',
-				type: 'GPIO',
-				pin: 28
-			},
-			{
-				label: 'Ground',
-				type: 'GND',
-				pin: 30
-			},
-			{
-				label: 'GPIO 12 (PWM0)',
-				type: 'GPIO',
-				pin: 32
-			},
-			{
-				label: 'Ground',
-				type: 'GND',
-				pin: 34
-			},
-			{
-				label: 'GPIO 16',
-				type: 'GPIO',
-				pin: 36
-			},
-			{
-				label: 'GPIO 20 (PCM DIN)',
-				type: 'GPIO',
-				pin: 38
-			},
-			{
-				label: 'GPIO 21 (PCM DOUT)',
-				type: 'GPIO',
-				pin: 40
-			}
-		]
-	};
-	let openModel = true;
-	function open() {
-		console.log('OPEJN');
+	import { userData } from './data.js';
+	let selectedBoard = 0;
+	let openModel = false;
+	function open(i) {
 		openModel = true;
+		selectedBoard = i;
 	}
 	function close() {
-		console.log('closze');
 		openModel = false;
 	}
-	let pinNumber = 0;
+	let pinNumberX = 1;
+	let pinNumberY = 1;
+
 	let boardType = 'header';
+	let showAddProp = true;
+	let propName = '';
+	$: pinNumber = pinNumberY + userData[selectedBoard].height * (pinNumberX - 1);
+
+	function addProp() {
+		if (showAddProp) {
+			showAddProp = false;
+		} else {
+			userData[selectedBoard].data[pinNumber - 1][propName] = '';
+			showAddProp = true;
+			propName = '';
+		}
+	}
 </script>
 
-<div class="box" on:click={open}>
-	<Heading color="#212121" size="small" value={data.name} />
-	<Canvas {data} />
+<div class="items">
+	{#each userData as dat, i}
+		<div class="box" on:click={() => open(i)}>
+			<Heading color="#212121" size="small" value={dat.name} />
+			<div class="canvasCont">
+				<Canvas data={userData[i]} />
+			</div>
+		</div>
+	{/each}
 </div>
 
 {#if openModel}
 	<div class="model">
 		<div class="model_content">
 			<div class="row">
-				<Heading color="#212121" size="small" value="Edit: {data.name}" />
+				<Heading color="#212121" size="small" value="Edit: {userData[selectedBoard].name}" />
 				<div class="close" on:click={close}>
 					<MdClose />
 				</div>
@@ -240,28 +54,84 @@
 			<br />
 			<div class="row">
 				<div class="canvasSmall">
-					<Canvas {data} />
+					{#key pinNumberX}
+						{#key pinNumberY}
+							{#key userData[selectedBoard]}
+								<Canvas
+									data={userData[selectedBoard]}
+									pinX={pinNumberX - 1}
+									pinY={pinNumberY - 1}
+								/>
+							{/key}
+						{/key}
+					{/key}
 				</div>
 				<div class="edit">
 					<Heading color="#212121" size="small" value="Pin Values" />
 					<div class="row inputRow">
-						<div class="label">Pin:</div>
-						<input
-							type="number"
-							id="pinSelect"
-							bind:value={pinNumber}
-							max={data.width * data.height}
-							min="0"
-						/>
-					</div>
-					<div class="row inputRow">
-						<div class="label">Type:</div>
+						<div class="label">Board:</div>
 						<select bind:value={boardType}>
-							<option value="header" default>Header Pins</option>
-							<option value="ic">IC Pins</option>
+							<option value="header" default>Header</option>
+							<option value="ic">IC</option>
 						</select>
 					</div>
-					<!-- type pins or ic -->
+					<div class="half">
+						<div class="row inputRow">
+							<div class="label">X:</div>
+							<input
+								type="number"
+								bind:value={pinNumberX}
+								max={userData[selectedBoard].width}
+								min="1"
+							/>
+						</div>
+						<div class="row inputRow">
+							<div class="label">Y:</div>
+							<input
+								type="number"
+								bind:value={pinNumberY}
+								max={userData[selectedBoard].height}
+								min="1"
+							/>
+						</div>
+					</div>
+					<div class="marginTop">
+						<Heading color="#212121" size="xsmall" value="Properties" />
+					</div>
+					<div class="props">
+						{#key Object.keys(userData[selectedBoard].data[pinNumber - 1]).length}
+							{#each Object.keys(userData[selectedBoard].data[pinNumber - 1]) as prop}
+								<div class="row inputRow">
+									<div class="label">{prop}:</div>
+									{#if typeof userData[selectedBoard].data[pinNumber - 1][prop] == 'string'}
+										<input
+											type="text"
+											bind:value={userData[selectedBoard].data[pinNumber - 1][prop]}
+										/>
+									{:else if typeof userData[selectedBoard].data[pinNumber - 1][prop] == 'number'}
+										<input
+											type="number"
+											bind:value={userData[selectedBoard].data[pinNumber - 1][prop]}
+										/>
+									{/if}
+								</div>
+							{/each}
+						{/key}
+
+						{#if showAddProp}
+							<div class="row inputRow">
+								<div class="label full" on:click={addProp}>Add Property</div>
+							</div>
+						{:else}
+							<div class="row inputRow">
+								<div class="label">Name:</div>
+								<input type="text" bind:value={propName} />
+							</div>
+							<div class="row inputRow">
+								<div class="label full" on:click={addProp}>Add Property</div>
+							</div>
+						{/if}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -276,6 +146,8 @@
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 		background: #fff;
 		cursor: pointer;
+		width: fit-content;
+		height: fit-content;
 	}
 	.box:hover {
 		border: 1px solid rgb(148, 135, 181);
@@ -316,16 +188,61 @@
 	}
 	.inputRow {
 		width: 80%;
-		justify-content: space-evenly;
 		margin-top: 10px;
-	}
-	.label {
+		display: flex;
 		font-size: 17px;
 		color: #212121;
 		font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	}
-	input[type='number'] {
-		border: #212121 2px solid;
-		border-radius: 3px;
+	.label {
+		background: #eee;
+		padding: 6px;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+	}
+	input {
+		border: #eee 2px solid;
+		border-radius: 4px;
+		width: 100%;
+		text-align: right;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		padding-right: 10px;
+	}
+	select {
+		border: #eee 2px solid;
+		border-radius: 4px;
+		width: 100%;
+		text-align: right;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+	}
+	.marginTop {
+		margin-top: 15px;
+	}
+	.half {
+		display: flex;
+		max-width: 223px;
+	}
+	.full {
+		width: 100%;
+		border-radius: 4px;
+		font-weight: 700;
+		text-align: center;
+		cursor: pointer;
+		user-select: none;
+	}
+	.full:hover {
+		background: #dbdbdb;
+	}
+	.props {
+		height: 300px;
+		overflow-y: auto;
+	}
+	.canvasCont {
+		width: fit-content;
+	}
+	.items {
+		display: flex;
 	}
 </style>

@@ -3,29 +3,34 @@
 	import Navbar from '../components/Navbar.svelte';
 	import Heading from '../stories/Heading.svelte';
 	import Board from '../routes/board.svelte';
+	import Ruler from '../routes/ruler.svelte';
+	import { selectedMenuOption } from '../stores.js';
 
 	let user = null;
 
 	const props = [
 		{
-			name: 'Main',
-			action: null,
+			name: 'Wiring',
 			showSubs: true,
 			sub: [
-				{ name: 'Sub One', action: null },
-				{ name: 'Sub Two', action: null }
+				{ name: 'Boards', action: 0 },
+				{ name: 'Rules', action: 1 },
+				{ name: 'Connections', action: 2 }
 			]
 		},
 		{
 			name: 'Two',
-			action: null,
 			showSubs: false,
 			sub: [
-				{ name: 'Sub One', action: null },
-				{ name: 'Sub Two', action: null }
+				{ name: 'Sub One', action: 3 },
+				{ name: 'Sub Two', action: 4 }
 			]
 		}
 	];
+	let pageIndex = 0;
+	selectedMenuOption.subscribe((value) => {
+		pageIndex = value;
+	});
 </script>
 
 <article>
@@ -38,11 +43,17 @@
 
 	<div class="cont">
 		<Navbar {props} />
-
-		<div class="content">
-			<Heading color="#212121" size="medium" value="Boards" />
-			<Board />
-		</div>
+		{#if pageIndex == 0}
+			<div class="content">
+				<Heading color="#212121" size="medium" value="Boards" />
+				<Board />
+			</div>
+		{:else if pageIndex == 1}
+			<div class="content">
+				<Heading color="#212121" size="medium" value="Rules" />
+				<Ruler />
+			</div>
+		{/if}
 	</div>
 </article>
 
