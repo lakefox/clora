@@ -18,22 +18,25 @@
 	}
 	function getAllTypes() {
 		let types = [];
-		for (let a = 0; a < userData.length; a++) {
-			let data = userData[a].data;
+		let currentTypes = getAddedRules();
+		for (let a = 0; a < userData.boards.length; a++) {
+			let data = userData.boards[a].data;
 			for (let i = 0; i < data.length; i++) {
 				const element = data[i];
 				if (typeof element.type != 'undefined') {
-					if (types.indexOf(element.type) == -1) {
+					if (types.indexOf(element.type) == -1 && currentTypes.indexOf(element.type) == -1) {
 						types.push(element.type);
 					}
 				}
 			}
 		}
+		updateNeed = false;
 		return types;
 	}
 
-	let displayTypeEditor = true;
+	let displayTypeEditor = false;
 	let typeName = '';
+	let updateNeed = false;
 	function openType(type, udIndex, typeIndex) {
 		typeName = type;
 		displayTypeEditor = true;
@@ -41,10 +44,36 @@
 	function close() {
 		displayTypeEditor = false;
 	}
+
+	function addRule(type) {
+		if (typeof userData.rules[typeName] == 'undefined') {
+			userData.rules[typeName] = [];
+		}
+		if (userData.rules[typeName].indexOf(type) == -1) {
+			userData.rules[typeName].push(type);
+			updateNeed = true;
+		}
+	}
+
+	function removeRule(type) {
+		if (typeof userData.rules[typeName] == 'undefined') {
+			userData.rules[typeName] = [];
+		} else {
+			if (userData.rules[typeName].indexOf(type) != -1) {
+				userData.rules[typeName].splice(userData.rules[typeName].indexOf(type), 1);
+				updateNeed = true;
+			}
+		}
+	}
+
+	function getAddedRules() {
+		return userData.rules[typeName] || [];
+	}
+	$: console.log(userData);
 </script>
 
 <main>
-	{#each userData as ud, i}
+	{#each userData.boards as ud, i}
 		<Heading color="#212121" size="small" value={ud.name} />
 		<div class="types">
 			{#each getTypes(ud) as type, t}
@@ -70,16 +99,24 @@
 					<Heading color="#212121" size="xsmall" value="Can Connect" />
 				</div>
 				<div class="row">
-					<div class="greyArea" />
+					<div class="greyArea">
+						{#key updateNeed}
+							{#each getAddedRules() as type}
+								<div class="box fit" on:click={() => removeRule(type)}>{type}</div>
+							{/each}
+						{/key}
+					</div>
 				</div>
 				<div class="row">
 					<Heading color="#212121" size="xsmall" value="Can NOT Connect" />
 				</div>
 				<div class="row">
 					<div class="greyArea">
-						{#each getAllTypes() as type}
-							<div class="box fit">{type}</div>
-						{/each}
+						{#key updateNeed}
+							{#each getAllTypes() as type}
+								<div class="box fit" on:click={() => addRule(type)}>{type}</div>
+							{/each}
+						{/key}
 					</div>
 				</div>
 			</div>

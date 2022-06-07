@@ -15,16 +15,15 @@
 	let pinNumberX = 1;
 	let pinNumberY = 1;
 
-	let boardType = 'header';
 	let showAddProp = true;
 	let propName = '';
-	$: pinNumber = pinNumberY + userData[selectedBoard].height * (pinNumberX - 1);
+	$: pinNumber = pinNumberY + userData.boards[selectedBoard].height * (pinNumberX - 1);
 
 	function addProp() {
 		if (showAddProp) {
 			showAddProp = false;
 		} else {
-			userData[selectedBoard].data[pinNumber - 1][propName] = '';
+			userData.boards[selectedBoard].data[pinNumber - 1][propName] = '';
 			showAddProp = true;
 			propName = '';
 		}
@@ -32,11 +31,11 @@
 </script>
 
 <div class="items">
-	{#each userData as dat, i}
+	{#each userData.boards as dat, i}
 		<div class="box" on:click={() => open(i)}>
 			<Heading color="#212121" size="small" value={dat.name} />
 			<div class="canvasCont">
-				<Canvas data={userData[i]} />
+				<Canvas data={userData.boards[i]} />
 			</div>
 		</div>
 	{/each}
@@ -46,7 +45,7 @@
 	<div class="model">
 		<div class="model_content">
 			<div class="row">
-				<Heading color="#212121" size="small" value="Edit: {userData[selectedBoard].name}" />
+				<Heading color="#212121" size="small" value="Edit: {userData.boards[selectedBoard].name}" />
 				<div class="close" on:click={close}>
 					<MdClose />
 				</div>
@@ -56,9 +55,9 @@
 				<div class="canvasSmall">
 					{#key pinNumberX}
 						{#key pinNumberY}
-							{#key userData[selectedBoard]}
+							{#key userData.boards[selectedBoard]}
 								<Canvas
-									data={userData[selectedBoard]}
+									data={userData.boards[selectedBoard]}
 									pinX={pinNumberX - 1}
 									pinY={pinNumberY - 1}
 								/>
@@ -70,9 +69,9 @@
 					<Heading color="#212121" size="small" value="Pin Values" />
 					<div class="row inputRow">
 						<div class="label">Board:</div>
-						<select bind:value={boardType}>
-							<option value="header" default>Header</option>
-							<option value="ic">IC</option>
+						<select bind:value={userData.boards[selectedBoard].type}>
+							<option value="0" default>Header</option>
+							<option value="1">IC</option>
 						</select>
 					</div>
 					<div class="half">
@@ -81,7 +80,7 @@
 							<input
 								type="number"
 								bind:value={pinNumberX}
-								max={userData[selectedBoard].width}
+								max={userData.boards[selectedBoard].width}
 								min="1"
 							/>
 						</div>
@@ -90,7 +89,7 @@
 							<input
 								type="number"
 								bind:value={pinNumberY}
-								max={userData[selectedBoard].height}
+								max={userData.boards[selectedBoard].height}
 								min="1"
 							/>
 						</div>
@@ -99,19 +98,19 @@
 						<Heading color="#212121" size="xsmall" value="Properties" />
 					</div>
 					<div class="props">
-						{#key Object.keys(userData[selectedBoard].data[pinNumber - 1]).length}
-							{#each Object.keys(userData[selectedBoard].data[pinNumber - 1]) as prop}
+						{#key Object.keys(userData.boards[selectedBoard].data[pinNumber - 1]).length}
+							{#each Object.keys(userData.boards[selectedBoard].data[pinNumber - 1]) as prop}
 								<div class="row inputRow">
 									<div class="label">{prop}:</div>
-									{#if typeof userData[selectedBoard].data[pinNumber - 1][prop] == 'string'}
+									{#if typeof userData.boards[selectedBoard].data[pinNumber - 1][prop] == 'string'}
 										<input
 											type="text"
-											bind:value={userData[selectedBoard].data[pinNumber - 1][prop]}
+											bind:value={userData.boards[selectedBoard].data[pinNumber - 1][prop]}
 										/>
-									{:else if typeof userData[selectedBoard].data[pinNumber - 1][prop] == 'number'}
+									{:else if typeof userData.boards[selectedBoard].data[pinNumber - 1][prop] == 'number'}
 										<input
 											type="number"
-											bind:value={userData[selectedBoard].data[pinNumber - 1][prop]}
+											bind:value={userData.boards[selectedBoard].data[pinNumber - 1][prop]}
 										/>
 									{/if}
 								</div>

@@ -4,6 +4,7 @@
 	import Heading from '../stories/Heading.svelte';
 	import Board from '../routes/board.svelte';
 	import Ruler from '../routes/ruler.svelte';
+	import Connections from '../routes/connections.svelte';
 	import { selectedMenuOption } from '../stores.js';
 
 	let user = null;
@@ -52,6 +53,11 @@
 			<div class="content">
 				<Heading color="#212121" size="medium" value="Rules" />
 				<Ruler />
+			</div>
+		{:else if pageIndex == 2}
+			<div class="content">
+				<Heading color="#212121" size="medium" value="Connections" />
+				<Connections />
 			</div>
 		{/if}
 	</div>
