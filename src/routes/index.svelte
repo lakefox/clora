@@ -34,7 +34,7 @@
 	});
 </script>
 
-<article>
+<main>
 	<Header
 		{user}
 		on:login={() => (user = { name: 'Jane Doe' })}
@@ -61,7 +61,7 @@
 			</div>
 		{/if}
 	</div>
-</article>
+</main>
 
 <style>
 	.cont {

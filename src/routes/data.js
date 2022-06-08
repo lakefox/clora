@@ -319,6 +319,136 @@ export let userData = {
         SERIAL: [
             "GPIO"
         ]
-    }
+    },
+    connections: [
+        {
+            "name": "VCC",
+            "color": "#fff1bc",
+            "types": [
+                "VCC"
+            ],
+            "data": [
+                {
+                    "board": "Raspberry PI",
+                    "pin": "4"
+                },
+                {
+                    "board": "MCP3008",
+                    "pin": "16"
+                },
+                {
+                    "board": "MCP3008",
+                    "pin": "15"
+                }
+            ]
+        },
+        {
+            "name": "GND CH",
+            "color": "#86cbd8",
+            "types": [
+                "CH",
+                "GND"
+            ],
+            "data": [
+                {
+                    "board": "Raspberry PI",
+                    "pin": "6"
+                },
+                {
+                    "board": "MCP3008",
+                    "pin": "1"
+                },
+                {
+                    "board": "MCP3008",
+                    "pin": "2"
+                },
+                {
+                    "board": "MCP3008",
+                    "pin": "3"
+                },
+                {
+                    "board": "MCP3008",
+                    "pin": "4"
+                }
+            ]
+        },
+        {
+            "name": "CLK 23",
+            "color": "#f95d48",
+            "types": [
+                "CLK",
+                "SERIAL",
+                "GPIO"
+            ],
+            "data": [
+                {
+                    "board": "MCP3008",
+                    "pin": "10"
+                },
+                {
+                    "board": "MCP3008",
+                    "pin": "11"
+                }
+            ]
+        },
+        {
+            "name": "DOUT 24",
+            "color": "#21a55f",
+            "types": [
+                "CLK",
+                "GPIO"
+            ],
+            "data": [
+                {
+                    "board": "Raspberry PI",
+                    "pin": "18"
+                },
+                {
+                    "board": "Raspberry PI",
+                    "pin": "18"
+                },
+                {
+                    "board": "MCP3008",
+                    "pin": "12"
+                }
+            ]
+        },
+        {
+            "name": "DIN 25",
+            "color": "#34d857",
+            "types": [
+                "GPIO",
+                "SERIAL"
+            ],
+            "data": [
+                {
+                    "board": "MCP3008",
+                    "pin": "11"
+                },
+                {
+                    "board": "Raspberry PI",
+                    "pin": "22"
+                }
+            ]
+        },
+        {
+            "name": "CD/SHDN 8",
+            "color": "#c499e5",
+            "types": [
+                "SERIAL",
+                "CLK",
+                "GPIO"
+            ],
+            "data": [
+                {
+                    "board": "MCP3008",
+                    "pin": "10"
+                },
+                {
+                    "board": "Raspberry PI",
+                    "pin": "24"
+                }
+            ]
+        }
+    ]
 };
-

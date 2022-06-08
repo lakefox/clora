@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-17239a73.js",
+    "file": "start-62f0b475.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -11,6 +11,7 @@
       ".svelte-kit/runtime/components/layout.svelte",
       ".svelte-kit/runtime/components/error.svelte",
       "src/routes/board.svelte",
+      "src/routes/connections.svelte",
       "src/routes/index.svelte",
       "src/routes/ruler.svelte"
     ]
@@ -34,42 +35,56 @@
     ]
   },
   "src/routes/board.svelte": {
-    "file": "pages/board.svelte-3e8f097c.js",
+    "file": "pages/board.svelte-eeda2d73.js",
     "src": "src/routes/board.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-8c2c5986.js",
-      "_data-9409bda5.js"
+      "_data-3fe18ba6.js"
     ],
     "css": [
       "assets/pages/board.svelte-d4c28d5a.css"
     ]
   },
+  "src/routes/connections.svelte": {
+    "file": "pages/connections.svelte-afe640a4.js",
+    "src": "src/routes/connections.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-8c2c5986.js",
+      "_data-3fe18ba6.js"
+    ],
+    "css": [
+      "assets/pages/connections.svelte-19dc91d9.css"
+    ]
+  },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-31a45bd9.js",
+    "file": "pages/index.svelte-07e3dfdf.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-8c2c5986.js",
-      "_data-9409bda5.js",
+      "_data-3fe18ba6.js",
       "_index-1e654a1f.js",
       "src/routes/board.svelte",
-      "src/routes/ruler.svelte"
+      "src/routes/ruler.svelte",
+      "src/routes/connections.svelte"
     ],
     "css": [
       "assets/pages/index.svelte-3ee47cfb.css"
     ]
   },
   "src/routes/ruler.svelte": {
-    "file": "pages/ruler.svelte-3b41f69d.js",
+    "file": "pages/ruler.svelte-c93ec003.js",
     "src": "src/routes/ruler.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-8c2c5986.js",
-      "_data-9409bda5.js"
+      "_data-3fe18ba6.js"
     ],
     "css": [
       "assets/pages/ruler.svelte-b05034e6.css"
@@ -84,8 +99,8 @@
       "_index-8c2c5986.js"
     ]
   },
-  "_data-9409bda5.js": {
-    "file": "chunks/data-9409bda5.js",
+  "_data-3fe18ba6.js": {
+    "file": "chunks/data-3fe18ba6.js",
     "imports": [
       "_index-8c2c5986.js"
     ],

@@ -167,7 +167,8 @@
 		max-width: 90%;
 		height: 500px;
 		background: #fff;
-		padding: 10px;
+		padding: 30px;
+		border-radius: 6px;
 	}
 	.row {
 		display: flex;
