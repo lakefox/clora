@@ -20,10 +20,10 @@
 			]
 		},
 		{
-			name: 'Two',
+			name: 'Modules',
 			showSubs: false,
 			sub: [
-				{ name: 'Sub One', action: 3 },
+				{ name: 'Modules', action: 3 },
 				{ name: 'Sub Two', action: 4 }
 			]
 		}

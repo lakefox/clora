@@ -1,11 +1,11 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-62f0b475.js",
+    "file": "start-ace04079.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
-      "_index-8c2c5986.js",
-      "_index-1e654a1f.js"
+      "_index-c6853e87.js",
+      "_index-047b1ef8.js"
     ],
     "dynamicImports": [
       ".svelte-kit/runtime/components/layout.svelte",
@@ -17,95 +17,101 @@
     ]
   },
   ".svelte-kit/runtime/components/layout.svelte": {
-    "file": "layout.svelte-669df435.js",
+    "file": "layout.svelte-5e04b173.js",
     "src": ".svelte-kit/runtime/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-8c2c5986.js"
+      "_index-c6853e87.js"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
-    "file": "error.svelte-fef68ce8.js",
+    "file": "error.svelte-56ea3d1b.js",
     "src": ".svelte-kit/runtime/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-8c2c5986.js"
+      "_index-c6853e87.js"
     ]
   },
   "src/routes/board.svelte": {
-    "file": "pages/board.svelte-eeda2d73.js",
+    "file": "pages/board.svelte-90a5259d.js",
     "src": "src/routes/board.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-8c2c5986.js",
-      "_data-3fe18ba6.js"
+      "_index-c6853e87.js",
+      "_data-18984e36.js",
+      "_randomColor-2c5b6ddd.js"
     ],
     "css": [
-      "assets/pages/board.svelte-d4c28d5a.css"
+      "assets/pages/board.svelte-4b996d9e.css"
     ]
   },
   "src/routes/connections.svelte": {
-    "file": "pages/connections.svelte-afe640a4.js",
+    "file": "pages/connections.svelte-095fd039.js",
     "src": "src/routes/connections.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-8c2c5986.js",
-      "_data-3fe18ba6.js"
+      "_index-c6853e87.js",
+      "_data-18984e36.js",
+      "_randomColor-2c5b6ddd.js"
     ],
     "css": [
-      "assets/pages/connections.svelte-19dc91d9.css"
+      "assets/pages/connections.svelte-d5f12424.css"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-07e3dfdf.js",
+    "file": "pages/index.svelte-8ff71f37.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-8c2c5986.js",
-      "_data-3fe18ba6.js",
-      "_index-1e654a1f.js",
+      "_index-c6853e87.js",
+      "_data-18984e36.js",
+      "_index-047b1ef8.js",
       "src/routes/board.svelte",
       "src/routes/ruler.svelte",
-      "src/routes/connections.svelte"
+      "src/routes/connections.svelte",
+      "_randomColor-2c5b6ddd.js"
     ],
     "css": [
-      "assets/pages/index.svelte-3ee47cfb.css"
+      "assets/pages/index.svelte-cc04f57e.css"
     ]
   },
   "src/routes/ruler.svelte": {
-    "file": "pages/ruler.svelte-c93ec003.js",
+    "file": "pages/ruler.svelte-3468658c.js",
     "src": "src/routes/ruler.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-8c2c5986.js",
-      "_data-3fe18ba6.js"
+      "_index-c6853e87.js",
+      "_data-18984e36.js"
     ],
     "css": [
-      "assets/pages/ruler.svelte-b05034e6.css"
+      "assets/pages/ruler.svelte-96b65733.css"
     ]
   },
-  "_index-8c2c5986.js": {
-    "file": "chunks/index-8c2c5986.js"
+  "_index-c6853e87.js": {
+    "file": "chunks/index-c6853e87.js"
   },
-  "_index-1e654a1f.js": {
-    "file": "chunks/index-1e654a1f.js",
+  "_index-047b1ef8.js": {
+    "file": "chunks/index-047b1ef8.js",
     "imports": [
-      "_index-8c2c5986.js"
+      "_index-c6853e87.js"
     ]
   },
-  "_data-3fe18ba6.js": {
-    "file": "chunks/data-3fe18ba6.js",
+  "_data-18984e36.js": {
+    "file": "chunks/data-18984e36.js",
     "imports": [
-      "_index-8c2c5986.js"
+      "_index-c6853e87.js"
     ],
     "css": [
       "assets/data-c0d996eb.css"
     ]
+  },
+  "_randomColor-2c5b6ddd.js": {
+    "file": "chunks/randomColor-2c5b6ddd.js"
   }
 }

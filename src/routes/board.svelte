@@ -28,17 +28,84 @@
 			propName = '';
 		}
 	}
+	let boardCreated = 0;
+	let newBoardName = 'untitled';
+	let newBoardWidth = 1;
+	let newBoardHeight = 1;
+	function newBoard() {
+		let pins = [];
+		for (let i = 0; i < newBoardWidth * newBoardHeight; i++) {
+			pins.push({
+				label: 'untitled',
+				type: 'None',
+				pin: i
+			});
+		}
+		userData.boards.push({
+			name: newBoardName,
+			width: newBoardWidth,
+			height: newBoardHeight,
+			type: 0,
+			data: pins
+		});
+		boardCreated++;
+		openCreateBoard = false;
+		newBoardName = 'untitled';
+		newBoardWidth = 1;
+		newBoardHeight = 1;
+	}
+	let openCreateBoard = false;
+	function openCreateBoardF() {
+		openCreateBoard = true;
+	}
+	function closeCreateBoardF() {
+		openCreateBoard = false;
+	}
 </script>
 
-<div class="items">
-	{#each userData.boards as dat, i}
-		<div class="box" on:click={() => open(i)}>
-			<Heading color="#212121" size="small" value={dat.name} />
-			<div class="canvasCont">
-				<Canvas data={userData.boards[i]} connections={userData.connections} />
+{#if openCreateBoard}
+	<div class="model">
+		<div class="model_content">
+			<div class="row">
+				<Heading color="#212121" size="small" value="Edit: {newBoardName}" />
+				<div class="close" on:click={closeCreateBoardF}>
+					<MdClose />
+				</div>
+			</div>
+			<div class="row inputRow maxwidth300">
+				<div class="label">Name:</div>
+				<input type="text" bind:value={newBoardName} />
+			</div>
+			<div class="half maxwidth300">
+				<div class="row inputRow">
+					<div class="label">Width:</div>
+					<input type="number" bind:value={newBoardWidth} min="1" />
+				</div>
+				<div class="row inputRow">
+					<div class="label">Height:</div>
+					<input type="number" bind:value={newBoardHeight} min="1" />
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="button marginLeft0" on:click={newBoard}>Create</div>
 			</div>
 		</div>
-	{/each}
+	</div>
+{/if}
+
+<div class="button" on:click={openCreateBoardF}>Add New Board</div>
+<div class="items">
+	{#key boardCreated}
+		{#each userData.boards as dat, i}
+			<div class="box" on:click={() => open(i)}>
+				<Heading color="#212121" size="small" value={dat.name} />
+				<div class="canvasCont">
+					<Canvas data={userData.boards[i]} connections={userData.connections} />
+				</div>
+			</div>
+		{/each}
+	{/key}
 </div>
 
 {#if openModel}
@@ -60,6 +127,7 @@
 									data={userData.boards[selectedBoard]}
 									pinX={pinNumberX - 1}
 									pinY={pinNumberY - 1}
+									connections={userData.connections}
 								/>
 							{/key}
 						{/key}
@@ -70,7 +138,7 @@
 					<div class="row inputRow">
 						<div class="label">Board:</div>
 						<select bind:value={userData.boards[selectedBoard].type}>
-							<option value="0" default>Header</option>
+							<option value="0" selected="selected">Header</option>
 							<option value="1">IC</option>
 						</select>
 					</div>
@@ -154,7 +222,7 @@
 	.model {
 		width: 100vw;
 		height: 100vh;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		background: rgba(0, 0, 0, 0.3);
@@ -244,5 +312,24 @@
 	}
 	.items {
 		display: flex;
+		height: fit-content;
+		flex-wrap: wrap;
+	}
+	.button {
+		padding: 10px;
+		background: #687ce9;
+		color: #fff;
+		font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		border-radius: 4px;
+		cursor: pointer;
+		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+		width: fit-content;
+		margin-left: 10px;
+	}
+	.maxwidth300 {
+		max-width: 300px;
+	}
+	.marginLeft0 {
+		margin-left: 0;
 	}
 </style>

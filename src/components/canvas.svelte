@@ -69,16 +69,19 @@
 	function getConnColor() {
 		let store = {};
 		let conns = connections;
-		for (let a = 0; a < conns.length; a++) {
-			const elementA = conns[a];
-			for (let b = 0; b < elementA.data.length; b++) {
-				const elementB = elementA.data[b];
-				if (typeof store[elementB.board] == 'undefined') {
-					store[elementB.board] = {};
+		if (typeof conns != 'undefined') {
+			for (let a = 0; a < conns.length; a++) {
+				const elementA = conns[a];
+				for (let b = 0; b < elementA.data.length; b++) {
+					const elementB = elementA.data[b];
+					if (typeof store[elementB.board] == 'undefined') {
+						store[elementB.board] = {};
+					}
+					store[elementB.board][elementB.pin] = elementA.color;
 				}
-				store[elementB.board][elementB.pin] = elementA.color;
 			}
 		}
+
 		return store;
 	}
 
@@ -129,11 +132,6 @@
 			ctx.fillStyle = '#bbb';
 			ctx.font = '18px Arial';
 			let fillStyle = '#bbb';
-			if (typeof pinX != 'undefined' && typeof pinY != 'undefined') {
-				if (pinX == x && pinY == y) {
-					fillStyle = '#212121';
-				}
-			}
 			let bold = '';
 			if (typeof colors[data.name] != 'undefined') {
 				if (typeof colors[data.name][data.data[i].pin] != 'undefined') {
@@ -141,6 +139,12 @@
 					bold = 'bold ';
 				}
 			}
+			if (typeof pinX != 'undefined' && typeof pinY != 'undefined') {
+				if (pinX == x && pinY == y) {
+					fillStyle = '#212121';
+				}
+			}
+
 			if (x == 0) {
 				if (typeof data.data[i] != 'undefined') {
 					if (typeof data.data[i].label != 'undefined') {
@@ -244,11 +248,6 @@
 			ctx.fillStyle = '#bbb';
 			ctx.font = '18px Arial';
 			let fillStyle = '#bbb';
-			if (typeof pinX != 'undefined' && typeof pinY != 'undefined') {
-				if (pinX == x && pinY == y) {
-					fillStyle = '#212121';
-				}
-			}
 			let bold = '';
 			if (typeof colors[data.name] != 'undefined') {
 				if (typeof colors[data.name][data.data[i].pin] != 'undefined') {
@@ -256,6 +255,12 @@
 					bold = 'bold ';
 				}
 			}
+			if (typeof pinX != 'undefined' && typeof pinY != 'undefined') {
+				if (pinX == x && pinY == y) {
+					fillStyle = '#212121';
+				}
+			}
+
 			if (x == 0) {
 				if (typeof data.data[i] != 'undefined') {
 					if (typeof data.data[i].label != 'undefined') {
