@@ -79,7 +79,7 @@
 			<div class="half maxwidth300">
 				<div class="row inputRow">
 					<div class="label">Width:</div>
-					<input type="number" bind:value={newBoardWidth} min="1" />
+					<input type="number" bind:value={newBoardWidth} min="1" max="2" />
 				</div>
 				<div class="row inputRow">
 					<div class="label">Height:</div>
