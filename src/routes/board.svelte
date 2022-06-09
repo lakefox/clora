@@ -35,7 +35,7 @@
 		<div class="box" on:click={() => open(i)}>
 			<Heading color="#212121" size="small" value={dat.name} />
 			<div class="canvasCont">
-				<Canvas data={userData.boards[i]} />
+				<Canvas data={userData.boards[i]} connections={userData.connections} />
 			</div>
 		</div>
 	{/each}

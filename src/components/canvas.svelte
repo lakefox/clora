@@ -1,11 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
+	import randomColor from 'randomcolor';
 
 	export let data;
 	export let pinX;
 	export let pinY;
-
-	console.log(data);
+	export let connections;
 
 	let canvas;
 
@@ -66,6 +66,22 @@
 		ctx.restore();
 	}
 
+	function getConnColor() {
+		let store = {};
+		let conns = connections;
+		for (let a = 0; a < conns.length; a++) {
+			const elementA = conns[a];
+			for (let b = 0; b < elementA.data.length; b++) {
+				const elementB = elementA.data[b];
+				if (typeof store[elementB.board] == 'undefined') {
+					store[elementB.board] = {};
+				}
+				store[elementB.board][elementB.pin] = elementA.color;
+			}
+		}
+		return store;
+	}
+
 	function typeZero(ctx, data) {
 		ctx.font = '18px Arial';
 		for (let i = 0; i < data.data.length; i++) {
@@ -81,7 +97,7 @@
 				}
 			}
 		}
-
+		let colors = getConnColor();
 		canvas.width =
 			data.width * pinWidth + pinMargin * data.width + textMarginLeft + textMarginRight;
 		canvas.height = data.height * pinHeight + pinMargin * data.height;
@@ -118,6 +134,13 @@
 					fillStyle = '#212121';
 				}
 			}
+			let bold = '';
+			if (typeof colors[data.name] != 'undefined') {
+				if (typeof colors[data.name][data.data[i].pin] != 'undefined') {
+					fillStyle = colors[data.name][data.data[i].pin];
+					bold = 'bold ';
+				}
+			}
 			if (x == 0) {
 				if (typeof data.data[i] != 'undefined') {
 					if (typeof data.data[i].label != 'undefined') {
@@ -128,7 +151,7 @@
 								{
 									text: data.data[i].label,
 									fillStyle: fillStyle,
-									font: '18px Arial'
+									font: bold + '18px Arial'
 								},
 								{
 									text: ` [${data.data[i].pin}] `,
@@ -156,7 +179,7 @@
 								{
 									text: data.data[i].label,
 									fillStyle: fillStyle,
-									font: '18px Arial'
+									font: bold + '18px Arial'
 								}
 							],
 							textMarginLeft + data.width * pinWidth + pinMargin,
@@ -165,6 +188,15 @@
 					}
 				}
 			}
+		}
+		if (typeof data.spaceing != 'undefined') {
+			ctx.fillStyle = '#bbb';
+			ctx.fillRect(
+				textMarginLeft + pinWidth + pinMargin,
+				pinMargin,
+				data.spaceing - pinMargin,
+				data.height * pinHeight * data.height
+			);
 		}
 	}
 
@@ -184,7 +216,7 @@
 				}
 			}
 		}
-
+		let colors = getConnColor();
 		canvas.width =
 			data.width * pinWidth + pinMargin * data.width + textMarginLeft + textMarginRight;
 		canvas.height = data.height * pinHeight + pinMargin * data.height + 10;
@@ -217,6 +249,13 @@
 					fillStyle = '#212121';
 				}
 			}
+			let bold = '';
+			if (typeof colors[data.name] != 'undefined') {
+				if (typeof colors[data.name][data.data[i].pin] != 'undefined') {
+					fillStyle = colors[data.name][data.data[i].pin];
+					bold = 'bold ';
+				}
+			}
 			if (x == 0) {
 				if (typeof data.data[i] != 'undefined') {
 					if (typeof data.data[i].label != 'undefined') {
@@ -227,7 +266,7 @@
 								{
 									text: data.data[i].label,
 									fillStyle: fillStyle,
-									font: '18px Arial'
+									font: bold + '18px Arial'
 								},
 								{
 									text: ` [${data.data[i].pin}] `,
@@ -255,7 +294,7 @@
 								{
 									text: data.data[i].label,
 									fillStyle: fillStyle,
-									font: '18px Arial'
+									font: bold + '18px Arial'
 								}
 							],
 							textMarginLeft + data.width * pinWidth + pinMargin,

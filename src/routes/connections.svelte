@@ -74,12 +74,12 @@
 	}
 
 	function checkBox(e) {
-		// let dataset = Object.assign({}, e.srcElement.dataset);
-		// if (e.srcElement.checked) {
-		// 	connection.data.push(dataset);
-		// } else {
-		// 	connection.data.splice(connection.data.indexOf(dataset), 1);
-		// }
+		let dataset = Object.assign({}, e.srcElement.dataset);
+		if (e.srcElement.checked) {
+			connection.data.push(dataset);
+		} else {
+			connection.data.splice(connection.data.indexOf(dataset), 1);
+		}
 	}
 	let updateConnections = 0;
 	function createConnection() {
@@ -112,7 +112,7 @@
 		return checked;
 	}
 	function updateConnection() {
-		userData.connections[editIndex] = connection;
+		userData.connections[editIndex] = JSON.parse(JSON.stringify(connection));
 		connection = { name: '', color: randomColor(), types: [], data: [] };
 		openCreateGroup = false;
 		updateNeed = false;
