@@ -382,12 +382,12 @@ export let userData = {
             ],
             "data": [
                 {
-                    "board": "MCP3008",
-                    "pin": "10"
+                    "board": "Raspberry PI",
+                    "pin": "16"
                 },
                 {
                     "board": "MCP3008",
-                    "pin": "11"
+                    "pin": "13"
                 }
             ]
         },

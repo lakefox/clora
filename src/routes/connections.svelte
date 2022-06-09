@@ -74,12 +74,12 @@
 	}
 
 	function checkBox(e) {
-		let dataset = Object.assign({}, e.srcElement.dataset);
-		if (e.srcElement.checked) {
-			connection.data.push(dataset);
-		} else {
-			connection.data.splice(connection.data.indexOf(dataset), 1);
-		}
+		// let dataset = Object.assign({}, e.srcElement.dataset);
+		// if (e.srcElement.checked) {
+		// 	connection.data.push(dataset);
+		// } else {
+		// 	connection.data.splice(connection.data.indexOf(dataset), 1);
+		// }
 	}
 	let updateConnections = 0;
 	function createConnection() {
@@ -90,32 +90,40 @@
 		closeCreateGroup();
 		updateConnections++;
 	}
-	function editConnection(c) {
-		console.log(c);
+	let editing = false;
+	let editIndex = 0;
+	function editConnection(c, i) {
 		connection = c;
+		editIndex = i;
 		openCreateGroup = true;
 		updateNeed = true;
+		editing = true;
 	}
 	function checkChecked(boardName, pin) {
 		let checked = false;
-		console.log('test');
 		for (let i = 0; i < connection.data.length; i++) {
 			const element = connection.data[i];
-			console.log(element, boardName, pin);
 			if (element.board == boardName && element.pin == pin) {
-				checked = false;
+				checked = true;
 				break;
 			}
 		}
 		updateNeed = false;
 		return checked;
 	}
+	function updateConnection() {
+		userData.connections[editIndex] = connection;
+		connection = { name: '', color: randomColor(), types: [], data: [] };
+		openCreateGroup = false;
+		updateNeed = false;
+		editing = false;
+	}
 </script>
 
 <div class="items marginTop">
 	{#key updateConnections}
 		{#each userData.connections as conn, i}
-			<div class="box" on:click={() => editConnection(conn)}>
+			<div class="box" on:click={() => editConnection(conn, i)}>
 				<Heading color={conn.color} size="xsmall" value={conn.name} />
 			</div>
 		{/each}
@@ -188,6 +196,9 @@
 										data-board={board.name}
 										data-pin={pin.pin}
 										on:change={checkBox}
+										checked={(() => {
+											return checkChecked(board.name, pin.pin);
+										})()}
 									/>
 									<label for={pin.label + pin.pin}>{pin.label} [{pin.pin}]</label>
 								</div>
@@ -196,9 +207,15 @@
 					</div>
 				{/each}
 			{/key}
-			<div class="row marginTop marginLeft">
-				<div class="button" on:click={createConnection}>Create Connection</div>
-			</div>
+			{#if editing}
+				<div class="row marginTop marginLeft">
+					<div class="button" on:click={updateConnection}>Update Connection</div>
+				</div>
+			{:else}
+				<div class="row marginTop marginLeft">
+					<div class="button" on:click={createConnection}>Create Connection</div>
+				</div>
+			{/if}
 		</div>
 	</div>
 {/if}
