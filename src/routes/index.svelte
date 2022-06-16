@@ -4,6 +4,7 @@
 	import Heading from '../stories/Heading.svelte';
 	import Board from '../routes/board.svelte';
 	import Ruler from '../routes/ruler.svelte';
+	import Layers from '../routes/layers.svelte';
 	import Connections from '../routes/connections.svelte';
 	import { selectedMenuOption } from '../stores.js';
 
@@ -16,15 +17,16 @@
 			sub: [
 				{ name: 'Components', action: 0 },
 				{ name: 'Rules', action: 1 },
-				{ name: 'Connections', action: 2 }
+				{ name: 'Connections', action: 2 },
+				{ name: 'Layers', action: 3 }
 			]
 		},
 		{
 			name: 'Modules',
 			showSubs: false,
 			sub: [
-				{ name: 'Modules', action: 3 },
-				{ name: 'Sub Two', action: 4 }
+				{ name: 'Modules', action: 4 },
+				{ name: 'Sub Two', action: 5 }
 			]
 		}
 	];
@@ -61,6 +63,12 @@
 				<Heading color="#212121" size="medium" value="Connections" />
 				<div class="box">Define each connection and color code them.</div>
 				<Connections />
+			</div>
+		{:else if pageIndex == 3}
+			<div class="content">
+				<Heading color="#212121" size="medium" value="Layers" />
+				<div class="box">Define each connection and color code them.</div>
+				<Layers />
 			</div>
 		{/if}
 	</div>
